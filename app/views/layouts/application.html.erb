@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <%= link_to 'Homepage', '/' %> |
+    <% if current_user %>
+      Greetings and salutations, <%= current_user.username %>! | <%= link_to "Logout", '/logout' %>
+    <% else %>
+      <%= link_to 'Login', '/login' %> | <%= link_to 'Register', '/register' %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
