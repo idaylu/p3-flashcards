@@ -1,7 +1,37 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+module Parser
+
+  def self.parse(filename, deck_id)
+    questions = []
+    answers = []
+    File.foreach(filename) do |row|
+      if row.include?("?")
+        questions << row.chomp
+      elsif row != "\n"
+        answers << row.chomp
+      end
+    end
+    self.parse_cards(questions, answers, deck_id)
+  end
+
+  def self.parse_cards(questions, answers, deck_id)
+    cards = []
+    questions.each_index do |index|
+      cards << Card.create!({
+        question: questions[index],
+        answer: answers[index],
+        deck_id: deck_id
+        })
+    end
+    cards
+  end
+end
+Deck.create!(name: "nighthawk flashcards")
+Deck.create!(name: "otter flashcards")
+Deck.create!(name: "raccoon flashcards")
+
+Parser.parse("nighthawk_flashcard_data.txt", 1)
+Parser.parse("otter_flashcard_data.txt", 2)
+Parser.parse("raccoon_flashcard_data.txt", 3)
+
+
+User.create!(username: "Tom", email: "tom@tom.com", password: "tom")

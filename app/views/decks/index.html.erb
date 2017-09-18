@@ -1,1 +1,6 @@
 <h1>Index Page</h1>
+  <% @decks.each do |deck| %>
+    Deck name: <%= link_to deck.title, deck_url(deck.id)  %>
+    Length: <%= deck.cards.length %>
+    <br>
+  <% end %>
