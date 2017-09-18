@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20170918144652) do
   end
 
   create_table "guesses", force: :cascade do |t|
-    t.boolean "correct"
-    t.integer "total_guesses"
+    t.boolean "correct", default: false
+    t.integer "total_guesses", default: 0
     t.bigint "card_id"
     t.bigint "round_id"
     t.datetime "created_at", null: false

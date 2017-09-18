@@ -11,4 +11,7 @@ Rails.application.routes.draw do
   resources :decks do
     resources :rounds, only: [:create, :show]
   end
+
+  resources :guesses, only: [:create]
+
 end

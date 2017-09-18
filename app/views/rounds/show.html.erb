@@ -1,8 +1,13 @@
 <h1>Yay? Studying!</h1>
 <br>
-<% if @cards.empty? %>
+<% if @round.incorrect_cards.empty? %>
   "Yay! You win! Finished!"
-  render #stats?
+   You got <%= @round.correct_cards_on_first_attempt %> / <%= @round.deck.cards.length %> correct on the first try, using <%= @round.total_attempts %> attempts.
 <% else %>
   <%= render template: "cards/_show" %>
+<% end %>
+
+<% if @card %>
+  <p> Previous question: <%= @card.question %> </p>
+  <p> Previous answer: <%= @card.answer %> </p>
 <% end %>
