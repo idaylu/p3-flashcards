@@ -1,0 +1,13 @@
+<h1><%= @deck.name %></h1>
+<br>
+Questions in this deck:
+<ul>
+  <% @deck.cards.each do |card| %>
+    <li><%= card.question %></li>
+  <% end %>
+</ul>
+
+<%= form_for :round, url: deck_rounds_url(@deck.id), method: :post do %>
+  <% hidden_field_tag(:deck_id, @deck.id) %>
+  <%= submit_tag("Start game") %>
+<% end %>

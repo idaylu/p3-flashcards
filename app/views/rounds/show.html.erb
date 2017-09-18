@@ -1,0 +1,8 @@
+<h1>Yay? Studying!</h1>
+<br>
+<% if @cards.empty? %>
+  "Yay! You win! Finished!"
+  render #stats?
+<% else %>
+  <%= render template: "cards/_show" %>
+<% end %>

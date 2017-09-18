@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
-  resources :decks
+  resources :decks do
+    resources :rounds, only: [:create, :show]
+  end
 end

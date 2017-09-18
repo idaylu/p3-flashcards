@@ -3,5 +3,7 @@ class DecksController < ApplicationController
     @decks = Deck.order(created_at: :DESC)
   end
 
-
+  def show
+    @deck = Deck.find(params[:id])
+  end
 end
